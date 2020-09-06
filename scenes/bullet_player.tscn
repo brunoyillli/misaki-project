@@ -1,39 +1,27 @@
 [gd_scene load_steps=4 format=2]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Area2D
+[ext_resource path="res://scripts/bullet_player.gd" type="Script" id=2]
 
-var vel = 300
-var dir = Vector2(0 , -1)
-
-func _ready():
-	add_to_group(\"bullet_player\")
-
-func _physics_process(delta):
-	translate(dir * vel * delta)
-
-
-func _on_VisibilityNotifier2D_screen_exited():
-	queue_free()
-"
-
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=1]
 flags = 4
 load_path = "res://.import/bullet_blue.png-87bc3e129faae93109c523ccdc986567.stex"
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 5.80684
+[sub_resource type="CircleShape2D" id=2]
+radius = 5.5539
 
 [node name="bullet_player" type="Area2D"]
-script = SubResource( 1 )
+collision_layer = 16
+collision_mask = 2
+script = ExtResource( 2 )
 
 [node name="bullet_blue" type="Sprite" parent="."]
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -0.157017, -0.52337 )
 scale = Vector2( 0.586538, 0.623174 )
+[connection signal="area_entered" from="." to="." method="_on_bullet_player_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

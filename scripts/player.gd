@@ -44,4 +44,7 @@ func running():
 		dir_y = -1
 		
 	move_and_slide( Vector2(dir_x , dir_y) * speed)
-	
+
+func killed():
+	if status != DEAD:
+		status = DEAD
