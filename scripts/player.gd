@@ -6,6 +6,7 @@ var speed = 300
 
 enum {RUNNING, DEAD, VICTORY}
 var status = RUNNING
+var type = "PLAYER"
 
 
 func _ready():

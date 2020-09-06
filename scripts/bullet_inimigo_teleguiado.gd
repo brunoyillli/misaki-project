@@ -15,13 +15,9 @@ func _ready():
 func _process(delta):
 	self.position += dir * delta * bullet_speed
 
-	if ($RayCast2D.is_colliding()):
-		var collid = $RayCast2D.get_collider().get_parent()
-		if (collid.type == "PLAYER"):
-			position += Vector2(2000, 2000)
-		
-
-
 func screen_exited():
 	get_parent().remove_child(self)
+	queue_free()
+
+func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

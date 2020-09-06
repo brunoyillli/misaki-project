@@ -38,6 +38,3 @@ func spawn_bullets():
 func _on_Timer_timeout():
 	spawn_bullets()
 
-
-func _on_VisibilityNotifier2D_screen_exited():
-	pass # Replace with function body.
