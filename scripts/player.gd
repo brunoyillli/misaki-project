@@ -6,7 +6,6 @@ var speed = 300
 
 enum {RUNNING, DEAD, VICTORY}
 var status = RUNNING
-var type = "PLAYER"
 
 
 func _ready():
@@ -44,4 +43,7 @@ func running():
 		dir_y = -1
 		
 	move_and_slide( Vector2(dir_x , dir_y) * speed)
-	
+
+func killed():
+	if status != DEAD:
+		status = DEAD
