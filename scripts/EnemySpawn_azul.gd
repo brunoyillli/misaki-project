@@ -2,7 +2,7 @@ extends Node
 
 onready var enemy_scene = [load("res://scenes/inimigo_teleguiado.tscn")
 ]
-
+var time = 0
 
 func _ready():
 	for i in range(5):
@@ -12,3 +12,6 @@ func _ready():
 		enemy.position.y = -100
 		add_child(enemy)
 	
+func _physics_process(delta):
+	if time == 5:
+		pass

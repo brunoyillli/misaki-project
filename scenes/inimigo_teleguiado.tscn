@@ -13,7 +13,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "movimentacao_fada_azul"
-frame = 2
+frame = 4
 playing = true
 
 [node name="Move_Tween" type="Tween" parent="."]

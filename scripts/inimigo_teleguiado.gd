@@ -18,7 +18,7 @@ func _ready():
 	$Move_Tween.start()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	move_local_x(1 * delta)
 	position.y += 50 * delta
@@ -41,6 +41,6 @@ func _on_Timer_timeout():
 	spawn_bullets()
 
 func _on_Area2D_area_entered(area):
-	life -= 1
+	#life -= 1
 	if life <= 0:
 		queue_free()
