@@ -4,9 +4,9 @@ var pre_bullet = preload("res://scenes/bullet_player.tscn")
 
 var speed = 300
 
-
 enum {RUNNING, DEAD, VICTORY}
 var status = RUNNING
+var type = "PLAYER"
 
 
 func _ready():
