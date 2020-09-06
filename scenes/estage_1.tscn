@@ -10,6 +10,6 @@
 position = Vector2( 399.524, 245.721 )
 
 [node name="limite_estage" parent="." instance=ExtResource( 2 )]
-position = Vector2( 0, 1 )
+position = Vector2( 7.4024, -0.850647 )
 
 [node name="EnemySpawn_azul" parent="." instance=ExtResource( 3 )]
