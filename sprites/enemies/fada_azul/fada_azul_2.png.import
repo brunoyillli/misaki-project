@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fada_azul_3.png-d1359c9c91ac3f2c100cfd5ccdc6c505.stex"
+path="res://.import/fada_azul_2.png-088e0721fd88352580278b293e88662e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/fada_azul_3.png"
-dest_files=[ "res://.import/fada_azul_3.png-d1359c9c91ac3f2c100cfd5ccdc6c505.stex" ]
+source_file="res://sprites/enemies/fada_azul/fada_azul_2.png"
+dest_files=[ "res://.import/fada_azul_2.png-088e0721fd88352580278b293e88662e.stex" ]
 
 [params]
 
