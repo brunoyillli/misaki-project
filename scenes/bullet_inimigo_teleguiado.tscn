@@ -7,6 +7,7 @@
 radius = 5.80684
 
 [node name="bullet_inimigo_teleguiado" type="Area2D"]
+collision_layer = 16
 script = ExtResource( 2 )
 
 [node name="bullet_estrela_negra" type="Sprite" parent="."]
