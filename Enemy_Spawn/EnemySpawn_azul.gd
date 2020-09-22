@@ -1,6 +1,6 @@
 extends Node
 
-onready var enemy_scene = [load("res://scenes/inimigo_teleguiado.tscn")
+onready var enemy_scene = [load("res://Inimigos/inimigo_teleguiado.tscn")
 ]
 var time = 0
 

@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var bullet_scene = load("res://scenes/bullet_inimigo_teleguiado.tscn")
+onready var bullet_scene = load("res://Bullet_Inimigo/bullet_inimigo_teleguiado.tscn")
 
 onready var player = get_parent().get_parent().get_node("player")
 #depois de um estudo, a conclusão é que a chamada acima pega o node com o nome designado
