@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var pre_bullet = preload("res://scenes/bullet_player.tscn")
+var pre_bullet = preload("res://Bullet_player/bullet_player.tscn")
 
 var speed = 300
 
@@ -11,6 +11,7 @@ var status = RUNNING
 func _ready():
 	add_to_group("player")
 
+# warning-ignore:unused_argument
 func _physics_process(delta):
 	if status == RUNNING:
 		running()
@@ -42,6 +43,7 @@ func running():
 	if Input.is_action_pressed('ui_up'):
 		dir_y = -1
 		
+# warning-ignore:return_value_discarded
 	move_and_slide( Vector2(dir_x , dir_y) * speed)
 
 func killed():
