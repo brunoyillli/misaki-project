@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var pre_bullet = preload("res://Bullet_player/bullet_player.tscn")
 
+onready var joystick = get_node("Hud/Joystick/Joystick_button")
+
 var speed = 300
 
 var vel := Vector2(0, 0)
@@ -19,8 +21,8 @@ var status = RUNNING
 
 func _ready():
 	add_to_group("player")
-	if(OS.get_name() == "Android"):
-		$Hud/Gamepad.hide()
+	if(OS.get_name() == "Windows"):
+		$Hud/Joystick.hide()
 		
 # warning-ignore:unused_argument
 func _physics_process(delta):
@@ -32,34 +34,25 @@ func _physics_process(delta):
 
 func _input(event):
 	if areaEnt == true:
-		if event is InputEventScreenTouch and event.is_pressed():
+		if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
 			var bullet = pre_bullet.instance()
 			bullet.global_position = $muzzle.global_position
 			get_parent().add_child(bullet)
 #			touchPos = event.get_position()
 #			deltaX = touchPos.x - position.x
 #			deltaY = touchPos.y - position.y
-		
-		elif event is InputEventScreenDrag:
-			var bullet = pre_bullet.instance()
-			bullet.global_position = $muzzle.global_position
-			get_parent().add_child(bullet)
-			
-#			touchPos = event.get_position()
-#			newDeltaX = touchPos.x - deltaX
-#			newDeltaY = touchPos.y - deltaY
-#			set_position(Vector2(newDeltaX, newDeltaY))
-		
 
 func _process(delta):
-	if Input.is_action_pressed("ui_ataque") or areaEnt == true:
-		var bullet = pre_bullet.instance()
-		bullet.global_position = $muzzle.global_position
-		get_parent().add_child(bullet)
+	move_and_slide(joystick.get_value() * speed)
 		
 		
 func running(delta):
 	var dirVec := Vector2(0, 0)
+	
+	if Input.is_action_pressed("ui_ataque") or areaEnt == true:
+		var bullet = pre_bullet.instance()
+		bullet.global_position = $muzzle.global_position
+		get_parent().add_child(bullet)
 	
 	if Input.is_action_pressed('ui_right'):
 		dirVec.x = 1
