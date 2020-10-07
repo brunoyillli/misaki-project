@@ -18,6 +18,8 @@ var areaEnt = false
 enum {RUNNING, DEAD, VICTORY}
 var status = RUNNING
 
+#shoot timer
+var canShoot = true
 
 func _ready():
 	add_to_group("player")
@@ -33,15 +35,16 @@ func _physics_process(delta):
 
 
 func _input(event):
-	if areaEnt == true:
-		if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
-			var bullet = pre_bullet.instance()
-			bullet.global_position = $muzzle.global_position
-			get_parent().add_child(bullet)
+#	if areaEnt == true:
+#		if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
+#			var bullet = pre_bullet.instance()
+#			bullet.global_position = $muzzle.global_position
+#			get_parent().add_child(bullet)
 #			touchPos = event.get_position()
 #			deltaX = touchPos.x - position.x
 #			deltaY = touchPos.y - position.y
-
+	pass
+	
 func _process(delta):
 	move_and_slide(joystick.get_value() * speed)
 		
@@ -49,10 +52,17 @@ func _process(delta):
 func running(delta):
 	var dirVec := Vector2(0, 0)
 	
-	if Input.is_action_pressed("ui_ataque") or areaEnt == true:
-		var bullet = pre_bullet.instance()
-		bullet.global_position = $muzzle.global_position
-		get_parent().add_child(bullet)
+	# verifica se tem tantos elementos no grupo bullet
+	if get_tree().get_nodes_in_group("bullet_player").size() <= 6:
+		if (Input.is_action_just_pressed("ui_ataque") or areaEnt == true) and canShoot:
+				var bullet = pre_bullet.instance()
+				bullet.add_to_group("bullet_player") #add no grupo 
+				bullet.global_position = $muzzle.global_position
+				get_parent().add_child(bullet) #Nao pode atirar, inicia o timer pra poder atirar dnv
+				canShoot=false
+				shootSFX()
+				$shootTimer.start()
+			
 	
 	if Input.is_action_pressed('ui_right'):
 		dirVec.x = 1
@@ -76,6 +86,8 @@ func killed():
 	if status != DEAD:
 		status = DEAD
 
+func shootSFX():
+	$shootSFX.play()
 
 
 func _on_TouchScreenButton_pressed():
@@ -84,3 +96,7 @@ func _on_TouchScreenButton_pressed():
 
 func _on_TouchScreenButton_released():
 	areaEnt = false
+
+
+func _on_shootTimer_timeout():
+	canShoot = true

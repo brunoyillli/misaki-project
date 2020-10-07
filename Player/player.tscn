@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/player_skin_red.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Player/player.gd" type="Script" id=2]
+[ext_resource path="res://Sound/SFX/playerShoot/shoot.wav" type="AudioStream" id=3]
 [ext_resource path="res://sprites/Button/lineDark02.png" type="Texture" id=7]
 [ext_resource path="res://sprites/Button/shadedDark11.png" type="Texture" id=8]
 [ext_resource path="res://Player/Joystick_button.gd" type="Script" id=9]
@@ -22,7 +23,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "move"
-frame = 5
+frame = 1
 playing = true
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
@@ -32,6 +33,14 @@ shape = SubResource( 1 )
 
 [node name="muzzle" type="Position2D" parent="."]
 position = Vector2( 0.858543, -21.6785 )
+
+[node name="shootTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="shootSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -6.0
+bus = "SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.314026, 1.9888 )
@@ -50,3 +59,4 @@ shape = SubResource( 3 )
 script = ExtResource( 9 )
 [connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
 [connection signal="released" from="TouchScreenButton" to="." method="_on_TouchScreenButton_released"]
+[connection signal="timeout" from="shootTimer" to="." method="_on_shootTimer_timeout"]
