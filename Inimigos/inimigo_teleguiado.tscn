@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://resources/fada_azul_skin.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Inimigos/inimigo_teleguiado.gd" type="Script" id=2]
+[ext_resource path="res://Inimigos/Funcao_dano.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 9.5692
@@ -23,6 +24,7 @@ playing = true
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 16
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -0.244171, 3.17425 )
