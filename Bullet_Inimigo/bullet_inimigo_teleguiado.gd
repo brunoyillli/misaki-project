@@ -20,3 +20,7 @@ func screen_exited():
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+
+func _on_bullet_inimigo_teleguiado_body_entered(body):
+	queue_free()
