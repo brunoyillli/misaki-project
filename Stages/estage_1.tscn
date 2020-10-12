@@ -11,4 +11,10 @@ position = Vector2( 281.799, 494.626 )
 
 [node name="EnemySpawn_azul" parent="." instance=ExtResource( 3 )]
 
+[node name="Enemy_Timer" type="Timer" parent="EnemySpawn_azul"]
+wait_time = 2.0
+autostart = true
+
 [node name="winLimit" parent="." instance=ExtResource( 2 )]
+[connection signal="timeout" from="EnemySpawn_azul/Enemy_Timer" to="EnemySpawn_azul" method="_on_Enemy_Timer_timeout"]
+[connection signal="timeout" from="EnemySpawn_azul/Enemy_Timer" to="player" method="_on_Enemy_Timer_timeout"]

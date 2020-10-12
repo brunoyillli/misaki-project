@@ -29,10 +29,10 @@ func _process(delta):
 func spawn_bullets():
 		var b1 = bullet_scene.instance()
 		b1.bullet_speed = 300
-		b1.position = leftGun.position
+		b1.position = leftGun.global_position
 		var b2 = bullet_scene.instance()
 		b2.bullet_speed = 300
-		b2.position = rightGun.position
+		b2.position = rightGun.global_position
 		get_tree().current_scene.add_child(b2)
 		get_tree().current_scene.add_child(b1)
 		

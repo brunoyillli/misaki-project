@@ -17,13 +17,13 @@ height = 0.216042
 radius = 80.0
 
 [node name="player" type="KinematicBody2D"]
-collision_mask = 14
+collision_mask = 46
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "move"
-frame = 1
+frame = 6
 playing = true
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
