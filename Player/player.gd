@@ -46,9 +46,9 @@ func _input(event):
 	pass
 	
 func _process(delta):
-	move_and_slide(joystick.get_value() * speed)
-		
-		
+	#move_and_slide(joystick.get_value() * speed)
+	pass
+	
 func running(delta):
 	var dirVec := Vector2(0, 0)
 	
@@ -76,9 +76,8 @@ func running(delta):
 	if Input.is_action_pressed('ui_up'):
 		dirVec.y = -1
 		
-		
 	vel = dirVec.normalized() * speed
-	position += vel * delta
+	vel = move_and_slide(vel) 
 ## warning-ignore:return_value_discarded
 #	move_and_slide( Vector2(dir_x , dir_y) * speed)
 

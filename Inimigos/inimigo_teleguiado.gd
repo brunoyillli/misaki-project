@@ -3,12 +3,13 @@ extends Node2D
 
 onready var bullet_scene = load("res://Bullet_Inimigo/bullet_inimigo_teleguiado.tscn")
 
-onready var player = get_parent().get_parent().get_node("player")
+onready var player = get_tree().get_root().get_node("estage_1/player")
 #depois de um estudo, a conclusão é que a chamada acima pega o node com o nome designado
 #no caso player
 
 var life = 3
-
+var mypos = Vector2(0,0)
+var playerpos = Vector2(0,0)
 func _ready():
 	$Timer.start()
 	
@@ -20,6 +21,8 @@ func _ready():
 
 
 func _process(delta):
+	mypos = self.global_position
+	playerpos = player.global_position
 	move_local_x(1 * delta)
 	position.y += 50 * delta
 	
@@ -33,9 +36,7 @@ func spawn_bullets():
 	get_parent().add_child(b1)
 	b1.bullet_speed = 600
 	b1.position = self.position
-	b1.dir = Vector2(player.position.x - self.position.x, player.position.y - 
-	self.position.y).normalized()
-		
+	b1.dir = Vector2(playerpos.x- mypos.x, playerpos.y-mypos.y).normalized()
 
 func _on_Timer_timeout():
 	spawn_bullets()

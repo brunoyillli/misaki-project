@@ -2,7 +2,7 @@ extends Area2D
 
 onready var bullet_scene = load("res://Bullet_Inimigo/Grande_teleguiado/teleguiado_Grande.tscn")
 
-onready var player = get_parent().get_parent().get_node("player")
+onready var player = get_tree().get_root().get_node("estage_1/player")
 #depois de um estudo, a conclusão é que a chamada acima pega o node com o nome designado
 #no caso player
 
@@ -26,6 +26,7 @@ func _process(delta):
 		queue_free()
 	
 func spawn_bullets():
+	
 	var b1 = bullet_scene.instance()
 	
 	get_parent().add_child(b1)
