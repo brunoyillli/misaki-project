@@ -1,20 +1,55 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/winLimit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemy_Spawn/EnemySpawn_fada_azul.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/timeGame.tscn" type="PackedScene" id=4]
 
 [node name="estage_1" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 281.799, 494.626 )
+position = Vector2( 296.799, 516.626 )
 
-[node name="EnemySpawn_azul" parent="." instance=ExtResource( 3 )]
+[node name="spawn" type="Node" parent="."]
 
-[node name="Enemy_Timer" type="Timer" parent="EnemySpawn_azul"]
-wait_time = 2.0
-autostart = true
+[node name="0-30 min" type="Node" parent="spawn"]
+
+[node name="EnemySpawn_azul" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+position = Vector2( 75, -8.851 )
+triggerSpawn = [ 2.0, 3.5, 10.8, 12.9, 15.25 ]
+spawnType = [ 3, 3, 3, 1, 2 ]
+
+[node name="EnemySpawn_azul2" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+position = Vector2( 165, -14.171 )
+triggerSpawn = [ 2.5, 4.0, 11.25, 14.25, 16.2 ]
+spawnType = [ 3, 3, 3, 3, 1 ]
+
+[node name="EnemySpawn_azul3" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+position = Vector2( 260, -13.416 )
+triggerSpawn = [ 3.0, 4.5, 12.0, 15.0, 17.0 ]
+spawnType = [ 3, 3, 3, 3, 1 ]
+
+[node name="EnemySpawn_azul4" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+position = Vector2( 365, -12.174 )
+triggerSpawn = [ 4.0, 5.5, 13.0, 15.0, 21.0 ]
+spawnType = [ 3, 3, 1, 3, 1 ]
+
+[node name="EnemySpawn_azul5" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+position = Vector2( 470, -11.128 )
+triggerSpawn = [ 5.0, 7.0, 20.0, 21.0, 26.0 ]
+spawnType = [ 3, 3, 3, 3, 1 ]
+
+[node name="1 min" type="Node" parent="spawn"]
+
+[node name="EnemySpawn_azul6" parent="spawn/1 min" instance=ExtResource( 3 )]
+position = Vector2( 473.827, -81.294 )
+triggerSpawn = [ 30.0, 35.5, 42.5, 43.0, 50.0 ]
+spawnType = [ 3, 3, 3, 3, 1 ]
+
+[node name="spawnPos" type="Position2D" parent="."]
+position = Vector2( 283.588, 9.91168 )
 
 [node name="winLimit" parent="." instance=ExtResource( 2 )]
-[connection signal="timeout" from="EnemySpawn_azul/Enemy_Timer" to="EnemySpawn_azul" method="_on_Enemy_Timer_timeout"]
-[connection signal="timeout" from="EnemySpawn_azul/Enemy_Timer" to="player" method="_on_Enemy_Timer_timeout"]
+
+[node name="timeGame" parent="." instance=ExtResource( 4 )]
+wait_time = 0.25
