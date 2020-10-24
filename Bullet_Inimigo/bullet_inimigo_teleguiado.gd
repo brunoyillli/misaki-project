@@ -23,4 +23,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_bullet_inimigo_teleguiado_body_entered(body):
+	body.damage(1)
 	queue_free()

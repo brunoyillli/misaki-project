@@ -4,6 +4,15 @@ var pre_bullet = preload("res://Bullet_player/bullet_player.tscn")
 
 onready var joystick = get_node("Hud/Joystick/Joystick_button")
 
+signal health_updated(health)
+signal killed()
+
+export (float) var max_health = 10
+
+onready var health = 4 setget _set_health
+onready var invu_timer = $Invulneravel
+
+
 var speed = 300
 
 var vel := Vector2(0, 0)
@@ -99,3 +108,26 @@ func _on_TouchScreenButton_released():
 
 func _on_shootTimer_timeout():
 	canShoot = true
+
+func _set_health(value):
+	var prev_health = health
+	health = clamp(value, 0, max_health)
+	if health != prev_health:
+		emit_signal("health_updated", health)
+		if health == 0:
+			kill()
+			emit_signal("killed")
+			
+	
+func damage(amount):
+	if invu_timer.is_stopped():
+		invu_timer.start()
+		_set_health(health - amount)
+		$AnimationPlayer.play("invunerability")
+		
+	
+func kill():
+	queue_free()
+	
+func _on_Invulneravel_timeout():
+	$AnimationPlayer.play("rest")
