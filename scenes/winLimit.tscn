@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sprites/hud.png" type="Texture" id=1]
-[ext_resource path="res://sprites/hearts/hearts.png" type="Texture" id=2]
-[ext_resource path="res://scenes/hud.gd" type="Script" id=3]
+[ext_resource path="res://scenes/hud.gd" type="Script" id=2]
+[ext_resource path="res://Stages/hearts.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 241.45, 10 )
@@ -10,44 +10,19 @@ extents = Vector2( 241.45, 10 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 294.995, 10 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 134.678, 287.582 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 59.5079, 303.348 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 307.212, 61.468 )
+
 [node name="winLimit" type="Node"]
 
-[node name="winLimBody" type="StaticBody2D" parent="."]
-position = Vector2( 278.752, 10.2728 )
-collision_layer = 0
-
-[node name="shape" type="CollisionShape2D" parent="winLimBody"]
-modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
-shape = SubResource( 1 )
-
-[node name="winLimBody2" type="StaticBody2D" parent="."]
-position = Vector2( 278.536, 589.763 )
-collision_layer = 0
-
-[node name="shape" type="CollisionShape2D" parent="winLimBody2"]
-modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
-shape = SubResource( 1 )
-
-[node name="winLimBody3" type="StaticBody2D" parent="."]
-position = Vector2( 31.1249, 307.206 )
-collision_layer = 0
-
-[node name="shape" type="CollisionShape2D" parent="winLimBody3"]
-modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
-rotation = 1.5708
-shape = SubResource( 2 )
-
-[node name="winLimBody4" type="StaticBody2D" parent="."]
-position = Vector2( 528.423, 289.567 )
-collision_layer = 0
-
-[node name="shape" type="CollisionShape2D" parent="winLimBody4"]
-modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
-rotation = 1.5708
-shape = SubResource( 2 )
-
 [node name="hud" type="CanvasLayer" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 
 [node name="hud" type="Sprite" parent="hud"]
 scale = Vector2( 1.25, 1.25005 )
@@ -97,18 +72,74 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VidaName" type="RichTextLabel" parent="hud"]
-margin_left = 552.624
-margin_top = 146.165
-margin_right = 592.624
-margin_bottom = 186.165
-text = "Lives:"
+[node name="Life" type="RichTextLabel" parent="hud"]
+margin_left = 558.625
+margin_top = 136.129
+margin_right = 738.625
+margin_bottom = 170.129
+text = "Life"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="hearts" type="Sprite" parent="hud"]
-position = Vector2( 616.063, 154.899 )
-scale = Vector2( 3, 3 )
-texture = ExtResource( 2 )
+position = Vector2( 664, 144 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
 hframes = 5
+
+[node name="limPlayer" type="Node2D" parent="."]
+
+[node name="winLimBody" type="StaticBody2D" parent="limPlayer"]
+position = Vector2( 278.752, 10.2728 )
+collision_layer = 0
+
+[node name="shape" type="CollisionShape2D" parent="limPlayer/winLimBody"]
+modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
+shape = SubResource( 1 )
+
+[node name="winLimBody2" type="StaticBody2D" parent="limPlayer"]
+position = Vector2( 278.536, 589.763 )
+collision_layer = 0
+
+[node name="shape" type="CollisionShape2D" parent="limPlayer/winLimBody2"]
+modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
+shape = SubResource( 1 )
+
+[node name="winLimBody3" type="StaticBody2D" parent="limPlayer"]
+position = Vector2( 31.1249, 307.206 )
+collision_layer = 0
+
+[node name="shape" type="CollisionShape2D" parent="limPlayer/winLimBody3"]
+modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="winLimBody4" type="StaticBody2D" parent="limPlayer"]
+position = Vector2( 528.423, 289.567 )
+collision_layer = 0
+
+[node name="shape" type="CollisionShape2D" parent="limPlayer/winLimBody4"]
+modulate = Color( 0.0470588, 0.027451, 0.027451, 1 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="deleta" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="shape" type="CollisionShape2D" parent="deleta"]
+position = Vector2( 665.258, 298.37 )
+shape = SubResource( 3 )
+
+[node name="shape2" type="CollisionShape2D" parent="deleta"]
+position = Vector2( -35.7717, 295.894 )
+shape = SubResource( 4 )
+
+[node name="shape3" type="CollisionShape2D" parent="deleta"]
+position = Vector2( 278.961, -47.9829 )
+shape = SubResource( 5 )
+
+[node name="shape4" type="CollisionShape2D" parent="deleta"]
+position = Vector2( 275.263, 651.076 )
+shape = SubResource( 5 )

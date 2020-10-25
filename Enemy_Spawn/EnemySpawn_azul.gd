@@ -6,6 +6,8 @@ onready var teleguiado_Grande_scene = [load("res://Inimigos/Inimigo_teleguiado_G
 ]
 onready var linear_scene = [load("res://Inimigos/Inimigo_linear/Inimigo_linear.tscn")
 ]
+onready var kitsune = [load("res://Inimigos/kitsune/kitsune.tscn")
+]
 
 var wave = 1
 var spawnTimer = 0
@@ -63,7 +65,11 @@ func spawn():
 			enemy.global_position.x = spawnPosX.x
 			enemy.global_position.y = spawnPosY.y
 			mainScene.add_child(enemy)
-		
+		4:
+			var enemy = kitsune[0].instance()
+			enemy.global_position.x = spawnPosX.x
+			enemy.global_position.y = spawnPosY.y
+			mainScene.add_child(enemy)
 		
 		
 		

@@ -6,7 +6,7 @@ onready var player = get_tree().get_root().get_node("estage_1/player")
 #depois de um estudo, a conclusão é que a chamada acima pega o node com o nome designado
 #no caso player
 
-var life = 3
+var life = 150
 
 func _ready():
 	$Timer.start()

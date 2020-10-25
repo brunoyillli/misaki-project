@@ -8,7 +8,7 @@ onready var bullet_scene = load("res://Bullet_Inimigo/Linear_bullet/bullet_linea
 onready var leftGun := $FiringPositions/LeftGun
 onready var rightGun := $FiringPositions/RightGun
 
-var life = 3
+var life = 120
 
 func _ready():
 	$Timer.start()

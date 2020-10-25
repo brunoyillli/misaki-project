@@ -2,18 +2,26 @@ extends Area2D
 
 
 var dir = Vector2(1, 0)
+var glow = false
+export var bullet_speed = 0.3
 
-export var bullet_speed = 1
+var dash = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$timer/slowDash.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.position += dir * delta * bullet_speed
-
+	if glow:
+		$anim.set_current_animation("glow")
+		if !dash:
+			position += dir * delta * bullet_speed *0.3
+		else: position += dir * delta * bullet_speed 
+	else:
+		position += dir * delta * bullet_speed *0.3
+		
 func screen_exited():
 	get_parent().remove_child(self)
 	queue_free()
@@ -25,3 +33,11 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_bullet_inimigo_teleguiado_body_entered(body):
 	body.damage(1)
 	queue_free()
+
+
+func _on_bullet_inimigo_teleguiado_area_entered(area):
+	queue_free()
+
+
+func _on_slowDash_timeout():
+	dash = true

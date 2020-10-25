@@ -10,44 +10,42 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 8.88078
-height = 0.216042
+radius = 5.6532
+height = 0.0
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 80.0
 
 [sub_resource type="Animation" id=4]
-resource_name = "invunerability"
-length = 0.5
+resource_name = "imune"
+length = 0.4
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:visible")
+tracks/0/path = NodePath("AnimatedSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false, true, false ]
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "rest"
-length = 0.5
-loop = true
+resource_name = "normal"
 tracks/0/type = "value"
-tracks/0/path = NodePath("AnimatedSprite:visible")
+tracks/0/path = NodePath("AnimatedSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, true ]
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [node name="player" type="KinematicBody2D"]
@@ -57,7 +55,8 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "move"
-frame = 2
+frame = 7
+speed_scale = 2.0
 playing = true
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]
@@ -69,15 +68,16 @@ shape = SubResource( 1 )
 position = Vector2( 0.858543, -21.6785 )
 
 [node name="shootTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.03
 
 [node name="shootSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -6.0
+volume_db = -18.0
+pitch_scale = 3.0
 bus = "SFX"
 
 [node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2( -0.314026, 1.9888 )
+position = Vector2( 0.0395354, 12.5954 )
 shape = SubResource( 2 )
 
 [node name="Hud" type="CanvasLayer" parent="."]
@@ -92,13 +92,13 @@ normal = ExtResource( 8 )
 shape = SubResource( 3 )
 script = ExtResource( 9 )
 
-[node name="Invulneravel" type="Timer" parent="."]
-wait_time = 1.5
-one_shot = true
+[node name="imune" type="Timer" parent="."]
+wait_time = 3.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/invunerability = SubResource( 4 )
-anims/rest = SubResource( 5 )
+[node name="animImun" type="AnimationPlayer" parent="."]
+anims/imune = SubResource( 4 )
+anims/normal = SubResource( 5 )
 [connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
 [connection signal="released" from="TouchScreenButton" to="." method="_on_TouchScreenButton_released"]
 [connection signal="timeout" from="shootTimer" to="." method="_on_shootTimer_timeout"]
+[connection signal="timeout" from="imune" to="." method="_on_imune_timeout"]
