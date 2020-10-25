@@ -4,6 +4,10 @@ onready var bullet_scene = load("res://Bullet_Inimigo/bullet_inimigo_teleguiado.
 onready var player = get_tree().get_root().get_node("estage_1/player")
 #depois de um estudo, a conclusão é que a chamada acima pega o node com o nome designado
 #no caso player
+
+var alma_azul = preload("res://Cristais/Alma_azul/alma_azul.tscn")
+var alma_rosa = preload("res://Cristais/Alma_rosa/alma_rosa.tscn")
+
 var life = 100
 var mypos = Vector2(0,0)
 var playerpos = Vector2(0,0)
@@ -71,5 +75,13 @@ func _on_timer_timeout():
 func damage(amount: int):
 	life -= amount
 	if life<= 0:
+		var drop = randi() % 4 # 25% de chance de dropar a vida
+		if drop == 0:
+			var pick_rosa = alma_rosa.instance()
+			pick_rosa.position = Vector2(self.position.x , (self.position.y - 10))
+			get_parent().add_child(pick_rosa)
+		var pick_azul = alma_azul.instance()
+		pick_azul.position = self.position
+		get_parent().add_child(pick_azul)
 		queue_free()
 
