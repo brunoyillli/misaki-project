@@ -7,6 +7,7 @@
 radius = 39.8625
 
 [node name="Bullet_teleguiado_Grande" type="Area2D"]
+collision_layer = 32
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -57,7 +57,6 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "move"
-frame = 2
 playing = true
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="."]

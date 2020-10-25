@@ -3,7 +3,6 @@
 [ext_resource path="res://Bullet_player/bullet_player.gd" type="Script" id=1]
 
 [sub_resource type="StreamTexture" id=1]
-flags = 4
 load_path = "res://.import/bullet_blue.png-87bc3e129faae93109c523ccdc986567.stex"
 
 [sub_resource type="CircleShape2D" id=2]
