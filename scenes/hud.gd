@@ -19,7 +19,7 @@ func _ready():
 		var y = (index / Hearth_row_size) * Hearth_offset
 		heart.position = Vector2(x, y)
 		
-func _process(delta):
+func _process(_delta):
 	for heart in $hearts.get_children():
 		var index = heart.get_index()
 		var last_heart = floor(player.health)

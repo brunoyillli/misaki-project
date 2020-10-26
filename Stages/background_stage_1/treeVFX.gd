@@ -3,9 +3,9 @@ extends Node2D
 
 
 
-func _process(delta):
+func _process(_delta):
 	if get_global_position().y <= 700:
-		position.y += 9
+		position.y += 0.495
 		
 	else: 
 		position.y = -100

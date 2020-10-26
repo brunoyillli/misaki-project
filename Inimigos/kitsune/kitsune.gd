@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 onready var bullet_scene = load("res://Bullet_Inimigo/bullet_inimigo_teleguiado.tscn")
 onready var player = get_tree().get_root().get_node("estage_1/player")
@@ -8,7 +8,7 @@ onready var player = get_tree().get_root().get_node("estage_1/player")
 var alma_azul = preload("res://Cristais/Alma_azul/alma_azul.tscn")
 var alma_rosa = preload("res://Cristais/Alma_rosa/alma_rosa.tscn")
 
-var life = 100
+var life = 55
 var mypos = Vector2(0,0)
 var playerpos = Vector2(0,0)
 var canShoot = true
@@ -21,18 +21,19 @@ var dividendo = 4.0
 var dirQuad = 1
 var angulo = 180
 
+onready var mainScene = get_tree().get_root().get_node("estage_1")
+
 func _ready():
 	ratio = 90/dividendo
 	x = cos(180)
 	y = 0.0
 func _process(delta):
 	if canShoot:
-		for o in range(2):
+		for _o in range(2):
 			spawn_bullets(dirQuad)
 			dirQuad += 1
-			cos(180)
+			x = cos(angulo)
 			angulo = 180
-			#print("troca")
 		canShoot = false
 		$timer.start()
 		
@@ -46,7 +47,7 @@ func _process(delta):
 		queue_free()
 
 func spawn_bullets(direction):
-	for i in range((dividendo)*2.0):
+	for _i in range((dividendo)*2.0):
 		quadrantes(direction)
 		var b1 = bullet_scene.instance()
 		get_parent().add_child(b1)
@@ -79,9 +80,9 @@ func damage(amount: int):
 		if drop == 0:
 			var pick_rosa = alma_rosa.instance()
 			pick_rosa.position = Vector2(self.position.x , (self.position.y - 10))
-			get_parent().add_child(pick_rosa)
+			mainScene.call_deferred("add_child", pick_rosa)
 		var pick_azul = alma_azul.instance()
 		pick_azul.position = self.position
-		get_parent().add_child(pick_azul)
+		mainScene.call_deferred("add_child", pick_azul)
 		queue_free()
 

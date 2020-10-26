@@ -5,13 +5,14 @@ onready var bullet_scene = load("res://Bullet_Inimigo/Linear_bullet/bullet_linea
 #onready var player = get_parent().get_parent().get_node("player")
 ##depois de um estudo, a conclusão é que a chamada acima pega o node com o nome designado
 ##no caso player
-var alma_azul = preload("res://Cristais/Alma_azul/alma_azul.tscn")
-var alma_rosa = preload("res://Cristais/Alma_rosa/alma_rosa.tscn")
+onready var alma_azul = preload("res://Cristais/Alma_azul/alma_azul.tscn")
+onready var alma_rosa = preload("res://Cristais/Alma_rosa/alma_rosa.tscn")
+onready var mainScene = get_tree().get_root().get_node("estage_1")
 
 onready var leftGun := $FiringPositions/LeftGun
 onready var rightGun := $FiringPositions/RightGun
 
-var life = 120
+var life = 60
 
 func _ready():
 	$Timer.start()
@@ -44,14 +45,15 @@ func _on_Timer_timeout():
 	spawn_bullets()
 
 func damage(amount: int):
-	life -= amount
-	if life<= 0:
+	if life > 0:
+		life -= amount
+	else:
 		var drop = randi() % 4 # 25% de chance de dropar a vida
 		if drop == 0:
 			var pick_rosa = alma_rosa.instance()
 			pick_rosa.position = Vector2(self.position.x , (self.position.y - 10))
-			get_parent().add_child(pick_rosa)
+			mainScene.call_deferred("add_child", pick_rosa)
 		var pick_azul = alma_azul.instance()
-		pick_azul.position = self.position
-		get_parent().add_child(pick_azul)
+		pick_azul.set_global_position(Vector2(self.position.x , (self.position.y)))
+		mainScene.call_deferred("add_child", pick_azul)
 		queue_free()

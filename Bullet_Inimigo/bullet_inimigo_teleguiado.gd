@@ -35,7 +35,7 @@ func _on_bullet_inimigo_teleguiado_body_entered(body):
 	queue_free()
 
 
-func _on_bullet_inimigo_teleguiado_area_entered(area):
+func _on_bullet_inimigo_teleguiado_area_entered(_area):
 	queue_free()
 
 

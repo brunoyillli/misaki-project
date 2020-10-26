@@ -9,8 +9,10 @@ onready var player = get_tree().get_root().get_node("estage_1/player")
 
 var alma_azul = preload("res://Cristais/Alma_azul/alma_azul.tscn")
 var alma_rosa = preload("res://Cristais/Alma_rosa/alma_rosa.tscn")
+onready var mainScene = get_tree().get_root().get_node("estage_1")
 
-var life = 95
+
+var life = 45
 var mypos = Vector2(0,0)
 var playerpos = Vector2(0,0)
 func _ready():
@@ -38,10 +40,10 @@ func _process(delta):
 		if drop == 0:
 			var pick_rosa = alma_rosa.instance()
 			pick_rosa.position = Vector2(self.position.x , (self.position.y - 10))
-			get_parent().add_child(pick_rosa)
+			mainScene.call_deferred("add_child", pick_rosa)
 		var pick_azul = alma_azul.instance()
 		pick_azul.position = self.position
-		get_parent().add_child(pick_azul)
+		mainScene.call_deferred("add_child", pick_azul)
 		queue_free()
 		
 func spawn_bullets():
@@ -55,7 +57,7 @@ func spawn_bullets():
 func _on_Timer_timeout():
 	spawn_bullets()
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	#life -= 1
 	if life <= 0:
 		queue_free()

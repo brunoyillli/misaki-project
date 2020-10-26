@@ -18,6 +18,5 @@ texture = ExtResource( 1 )
 wait_time = 2.5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PoolVector2Array( 7.67407, 30.2604, 12.6797, 12.2401, -13.3497, 11.9064, -8.67772, 30.2604, -20.3576, 31.929, -37.3768, -13.1219, -23.361, -33.8119, -7.67659, -25.1354, -8.0103, -19.4623, 7.00665, -19.1286, 9.00891, -28.1388, 23.3584, -33.1444, 37.0405, -11.1196, 18.6865, 33.9313 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
