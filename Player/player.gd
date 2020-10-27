@@ -58,7 +58,7 @@ func running():
 	
 	# verifica se tem tantos elementos no grupo bullet
 	if get_tree().get_nodes_in_group("bullet_player").size() <= 64:
-		if (Input.is_action_just_pressed("ui_ataque") or areaEnt == true) and canShoot:
+		if (Input.is_action_pressed("ui_ataque") or areaEnt == true) and canShoot:
 				var bullet = pre_bullet.instance()
 				bullet.add_to_group("bullet_player") #add no grupo 
 				bullet.global_position = $muzzle.global_position
@@ -66,8 +66,12 @@ func running():
 				canShoot=false
 				shootSFX()
 				$shootTimer.start()
-			
-	
+				
+	if Input.is_action_pressed("ui_ataque") or areaEnt == true:
+		$player_shape.visible = true
+	else:
+		$player_shape.visible = false
+		
 	if Input.is_action_pressed('ui_right'):
 		dirVec.x = 1
 

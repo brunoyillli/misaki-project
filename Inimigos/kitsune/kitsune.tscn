@@ -39,7 +39,7 @@ autoplay = "idle"
 anims/idle = SubResource( 1 )
 
 [node name="timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.5
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

@@ -1,22 +1,19 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/player_skin_red.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Player/player.gd" type="Script" id=2]
 [ext_resource path="res://Sound/SFX/playerShoot/shoot.wav" type="AudioStream" id=3]
+[ext_resource path="res://sprites/player/player_shape.png" type="Texture" id=4]
 [ext_resource path="res://sprites/Button/lineDark02.png" type="Texture" id=7]
 [ext_resource path="res://sprites/Button/shadedDark11.png" type="Texture" id=8]
 [ext_resource path="res://Player/Joystick_button.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 5.6532
-height = 0.0
-
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 80.0
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "imune"
 length = 0.4
 loop = true
@@ -33,7 +30,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "normal"
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:modulate")
@@ -48,6 +45,10 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 4.00765
+height = 0.0
+
 [node name="player" type="KinematicBody2D"]
 collision_mask = 46
 script = ExtResource( 2 )
@@ -55,7 +56,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "move"
-frame = 5
+frame = 7
 speed_scale = 2.0
 playing = true
 
@@ -76,10 +77,6 @@ volume_db = -18.0
 pitch_scale = 3.0
 bus = "SFX"
 
-[node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2( 0.0395354, 12.5954 )
-shape = SubResource( 2 )
-
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="Joystick" type="Sprite" parent="Hud"]
@@ -89,15 +86,25 @@ texture = ExtResource( 7 )
 [node name="Joystick_button" type="TouchScreenButton" parent="Hud/Joystick"]
 scale = Vector2( 0.5, 0.5 )
 normal = ExtResource( 8 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 script = ExtResource( 9 )
 
 [node name="imune" type="Timer" parent="."]
 wait_time = 3.0
 
 [node name="animImun" type="AnimationPlayer" parent="."]
-anims/imune = SubResource( 4 )
-anims/normal = SubResource( 5 )
+anims/imune = SubResource( 3 )
+anims/normal = SubResource( 4 )
+
+[node name="player_shape" type="Sprite" parent="."]
+visible = false
+position = Vector2( -0.5, 0 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 4 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2( 0.0395354, 0.5954 )
+shape = SubResource( 5 )
 [connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
 [connection signal="released" from="TouchScreenButton" to="." method="_on_TouchScreenButton_released"]
 [connection signal="timeout" from="shootTimer" to="." method="_on_shootTimer_timeout"]

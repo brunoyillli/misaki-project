@@ -17,23 +17,18 @@ var canShoot = true
 var x
 var y
 var ratio = 0.0
-var dividendo = 4.0
-var dirQuad = 1
-var angulo = 180
+var dividendo = 10.0
+var angulo = 0.0
 
 onready var mainScene = get_tree().get_root().get_node("estage_1")
 
 func _ready():
-	ratio = 90/dividendo
-	x = cos(180)
-	y = 0.0
+	ratio = 90.0/(dividendo-1.0)
+	x = cos(0.0)
+	y = sin(0.0)
 func _process(delta):
 	if canShoot:
-		for _o in range(2):
-			spawn_bullets(dirQuad)
-			dirQuad += 1
-			x = cos(angulo)
-			angulo = 180
+		spawn_bullets()
 		canShoot = false
 		$timer.start()
 		
@@ -46,32 +41,27 @@ func _process(delta):
 		get_parent().remove_child(self)
 		queue_free()
 
-func spawn_bullets(direction):
-	for _i in range((dividendo)*2.0):
-		quadrantes(direction)
+func spawn_bullets():
+	for _i in range((dividendo+6.0)*2):
+		x = cos(angulo)
+		y = sin(angulo)
 		var b1 = bullet_scene.instance()
 		get_parent().add_child(b1)
-		b1.bullet_speed = 150
+		b1.bullet_speed = 75
 		b1.position = get_global_position()
 		b1.dir = Vector2(x,y)
 		angulo += ratio
-		x = cos(angulo)
 		b1.glow = true
-	
-func quadrantes(quad): #seta o quadrante no plano cartesiano
-	match quad:
-		1: y = circle()
-		2: y = -1.0*circle()
-		
-func circle():
-	return sqrt( 1.0 -(x*x)) #x,y
+
 	
 func _on_timer_timeout():
+	x = 1
+	y = 0
+	angulo = 0
 	canShoot = true
-	dirQuad = 1
-	if dividendo <= 8:
-		dividendo = dividendo*2
-	else: dividendo = 4.0
+	if dividendo <= 19:
+		dividendo = dividendo + 2
+	else: dividendo = 10
 	
 func damage(amount: int):
 	life -= amount

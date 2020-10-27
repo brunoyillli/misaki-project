@@ -13,12 +13,12 @@ length = 32.0
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Background2:region_rect")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 16 ),
+"times": PoolRealArray( 0, 32 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Rect2( 232.593, 4.31784, 351.478, 1520.58 ), Rect2( 232.593, -694.906, 351.478, 1349.01 ) ]
@@ -70,11 +70,10 @@ position = Vector2( 282.26, 297.219 )
 z_index = -2
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 232.593, 4.31784, 351.478, 1520.58 )
+region_rect = Rect2( 232.593, -6.87172, 351.478, 1517.83 )
 
 [node name="anim" type="AnimationPlayer" parent="Background"]
 autoplay = "idle"
-playback_speed = 0.45
 anims/idle = SubResource( 1 )
 
 [node name="trees" type="Node" parent="Background"]
@@ -83,34 +82,28 @@ anims/idle = SubResource( 1 )
 position = Vector2( 13.0341, -612.349 )
 z_index = -1
 
-[node name="pack" type="Node2D" parent="Background/trees/trees2"]
+[node name="treeVFX5" parent="Background/trees/trees2" instance=ExtResource( 6 )]
+position = Vector2( 355.631, 71.6546 )
 
-[node name="treeVFX9" parent="Background/trees/trees2/pack" instance=ExtResource( 6 )]
-position = Vector2( 23.9633, 75.1205 )
+[node name="pack" type="Node2D" parent="Background/trees/trees2"]
+position = Vector2( 83.7445, -10.6908 )
 
 [node name="treeVFX2" parent="Background/trees/trees2/pack" instance=ExtResource( 6 )]
-position = Vector2( 58.5199, 57.668 )
+position = Vector2( 47.8291, 59.4498 )
 
 [node name="treeVFX5" parent="Background/trees/trees2/pack" instance=ExtResource( 6 )]
-position = Vector2( 63.6597, 87.4713 )
-
-[node name="pack4" type="Node2D" parent="Background/trees/trees2"]
-position = Vector2( 246.314, -79.7068 )
-
-[node name="treeVFX2" parent="Background/trees/trees2/pack4" instance=ExtResource( 6 )]
-position = Vector2( 58.5199, 57.668 )
-
-[node name="treeVFX5" parent="Background/trees/trees2/pack4" instance=ExtResource( 6 )]
-position = Vector2( 63.6597, 87.4713 )
+position = Vector2( 33.3874, 163.152 )
+scale = Vector2( -1, 1 )
 
 [node name="pack5" type="Node2D" parent="Background/trees/trees2"]
 position = Vector2( 184.842, 132.327 )
 
-[node name="treeVFX9" parent="Background/trees/trees2/pack5" instance=ExtResource( 6 )]
-position = Vector2( 23.9633, 75.1205 )
-
 [node name="treeVFX5" parent="Background/trees/trees2/pack5" instance=ExtResource( 6 )]
-position = Vector2( 63.6597, 87.4713 )
+position = Vector2( 4.32977, 63.1037 )
+
+[node name="treeVFX9" parent="Background/trees/trees2/pack5" instance=ExtResource( 6 )]
+position = Vector2( 0.655151, 160.937 )
+scale = Vector2( -1, 1 )
 
 [node name="trees3" type="Node2D" parent="Background/trees"]
 position = Vector2( 95.2612, -188.051 )
@@ -123,10 +116,11 @@ position = Vector2( 49.465, 43.656 )
 position = Vector2( 49.465, 43.656 )
 
 [node name="treeVFX2" parent="Background/trees/trees3" instance=ExtResource( 6 )]
-position = Vector2( 275.611, 171.785 )
+position = Vector2( 307.611, 83.785 )
 
 [node name="treeVFX3" parent="Background/trees/trees3" instance=ExtResource( 6 )]
-position = Vector2( 305.815, 52.857 )
+position = Vector2( 53.3176, 188.641 )
+scale = Vector2( -1, 1 )
 
 [node name="trees5" type="Node2D" parent="Background/trees"]
 position = Vector2( 317.48, -466.696 )
@@ -135,18 +129,18 @@ z_index = -1
 [node name="treeVFX" parent="Background/trees/trees5" instance=ExtResource( 6 )]
 position = Vector2( 145.357, 73.6222 )
 
+[node name="treeVFX8" parent="Background/trees/trees5" instance=ExtResource( 6 )]
+position = Vector2( 64.2484, 24.0554 )
+
 [node name="treeVFX5" parent="Background/trees/trees5" instance=ExtResource( 6 )]
 position = Vector2( 70.4413, 145.541 )
-
-[node name="treeVFX8" parent="Background/trees/trees5" instance=ExtResource( 6 )]
-position = Vector2( 100.407, 52.6459 )
 
 [node name="trees7" type="Node2D" parent="Background/trees"]
 position = Vector2( 412.617, -488.102 )
 z_index = -1
 
 [node name="treeVFX5" parent="Background/trees/trees7" instance=ExtResource( 6 )]
-position = Vector2( -135.921, 266.183 )
+position = Vector2( 62.7548, 216.795 )
 
 [node name="Background3" type="Sprite" parent="Background"]
 modulate = Color( 0.0745098, 0.0745098, 0.0745098, 0.835294 )
@@ -168,17 +162,17 @@ position = Vector2( 296.799, 516.626 )
 [node name="EnemySpawn_azul" parent="spawn/0-30 min" instance=ExtResource( 3 )]
 position = Vector2( 75, -8.851 )
 triggerSpawn = [ 3.5, 10.0, 20.0, 30.0, 44.0 ]
-spawnType = [ 1, 2, 3, 1, 2 ]
+spawnType = [ 4, 2, 3, 1, 2 ]
 
 [node name="EnemySpawn_azul2" parent="spawn/0-30 min" instance=ExtResource( 3 )]
 position = Vector2( 165, -14.171 )
 triggerSpawn = [ 10.0, 10.0, 33.0, 24.0, 55.0 ]
-spawnType = [ 3, 4, 3, 3, 1 ]
+spawnType = [ 4, 4, 3, 3, 1 ]
 
 [node name="EnemySpawn_azul3" parent="spawn/0-30 min" instance=ExtResource( 3 )]
 position = Vector2( 260, -13.416 )
 triggerSpawn = [ 10.0, 22.0, 66.0, 125.0, 1254.0 ]
-spawnType = [ 1, 2, 3, 3, 1 ]
+spawnType = [ 4, 2, 3, 3, 1 ]
 
 [node name="EnemySpawn_azul4" parent="spawn/0-30 min" instance=ExtResource( 3 )]
 position = Vector2( 365, -12.174 )
