@@ -3,7 +3,7 @@
 [ext_resource path="res://resources/player_skin_red.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Player/player.gd" type="Script" id=2]
 [ext_resource path="res://Sound/SFX/playerShoot/shoot.wav" type="AudioStream" id=3]
-[ext_resource path="res://sprites/player/player_shape.png" type="Texture" id=4]
+[ext_resource path="res://sprites/enemies/spritesheet.png" type="Texture" id=4]
 [ext_resource path="res://sprites/Button/lineDark02.png" type="Texture" id=7]
 [ext_resource path="res://sprites/Button/shadedDark11.png" type="Texture" id=8]
 [ext_resource path="res://Player/Joystick_button.gd" type="Script" id=9]
@@ -46,7 +46,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 4.00765
+radius = 4.99041
 height = 0.0
 
 [node name="player" type="KinematicBody2D"]
@@ -56,7 +56,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "move"
-frame = 7
+frame = 6
 speed_scale = 2.0
 playing = true
 
@@ -69,11 +69,11 @@ shape = SubResource( 1 )
 position = Vector2( 0.858543, -21.6785 )
 
 [node name="shootTimer" type="Timer" parent="."]
-wait_time = 0.03
+wait_time = 0.05
 
 [node name="shootSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -18.0
+volume_db = -8.0
 pitch_scale = 3.0
 bus = "SFX"
 
@@ -97,13 +97,13 @@ anims/imune = SubResource( 3 )
 anims/normal = SubResource( 4 )
 
 [node name="player_shape" type="Sprite" parent="."]
-visible = false
 position = Vector2( -0.5, 0 )
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 308.453, 1515.68, 24.1041, 24.5497 )
 
 [node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2( 0.0395354, 0.5954 )
 shape = SubResource( 5 )
 [connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
 [connection signal="released" from="TouchScreenButton" to="." method="_on_TouchScreenButton_released"]

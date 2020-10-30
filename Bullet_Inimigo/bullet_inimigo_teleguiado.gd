@@ -1,7 +1,7 @@
 extends Area2D
 
 
-var dir = Vector2(1, 0)
+var dir = Vector2(0, 0)
 var glow = false
 export var bullet_speed = 0.3
 

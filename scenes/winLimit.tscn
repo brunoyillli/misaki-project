@@ -90,6 +90,24 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 5
 
+[node name="Life2" type="RichTextLabel" parent="hud"]
+margin_left = 558.625
+margin_top = 184.129
+margin_right = 738.625
+margin_bottom = 218.129
+text = "Power
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="power" type="Sprite" parent="hud"]
+modulate = Color( 0.054902, 1, 0, 1 )
+position = Vector2( 664, 192 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+hframes = 5
+
 [node name="limPlayer" type="Node2D" parent="."]
 
 [node name="winLimBody" type="StaticBody2D" parent="limPlayer"]
@@ -127,7 +145,7 @@ rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="deleta" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 64
 collision_mask = 32
 
 [node name="shape" type="CollisionShape2D" parent="deleta"]

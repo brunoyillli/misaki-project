@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/winLimit.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://scenes/timeGame.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Stages/background test.png" type="Texture" id=5]
 [ext_resource path="res://Stages/background_stage_1/treeVFX.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Stages/background_stage_1/rockVFX.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sound/BGM/stage1.ogg" type="AudioStream" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -24,35 +26,6 @@ tracks/0/keys = {
 "values": [ Rect2( 232.593, 4.31784, 351.478, 1520.58 ), Rect2( 232.593, -694.906, 351.478, 1349.01 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
-length = 4.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.9, 4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0.0745098, 0.0745098, 0.0745098, 0.835294 ), Color( 0.0745098, 0.0745098, 0.0745098, 0.517647 ), Color( 0.0745098, 0.0745098, 0.0745098, 0.835294 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.2, 1.9, 4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.101961, 0, 1, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
 [node name="estage_1" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
@@ -60,21 +33,44 @@ tracks/1/keys = {
 [node name="Background" type="Sprite" parent="Background"]
 modulate = Color( 0.380392, 0.380392, 0.380392, 1 )
 position = Vector2( -72.8069, 249.165 )
-z_index = -2
+z_index = -3
 texture = ExtResource( 5 )
 region_rect = Rect2( 253.908, 100.897, 381.605, 320.654 )
 
 [node name="Background2" type="Sprite" parent="Background"]
 modulate = Color( 0.4, 0.4, 0.4, 1 )
 position = Vector2( 282.26, 297.219 )
-z_index = -2
+z_index = -3
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 232.593, -6.87172, 351.478, 1517.83 )
+region_rect = Rect2( 232.593, -642.217, 351.478, 1361.94 )
 
 [node name="anim" type="AnimationPlayer" parent="Background"]
 autoplay = "idle"
 anims/idle = SubResource( 1 )
+
+[node name="rocks" type="Node" parent="Background"]
+
+[node name="rockVFX" parent="Background/rocks" instance=ExtResource( 7 )]
+position = Vector2( 191.462, -176.003 )
+
+[node name="rockVFX2" parent="Background/rocks" instance=ExtResource( 7 )]
+position = Vector2( 386.433, -195.721 )
+scale = Vector2( -1, 1 )
+
+[node name="rockVFX3" parent="Background/rocks" instance=ExtResource( 7 )]
+position = Vector2( 333.393, -331.844 )
+
+[node name="rockVFX6" parent="Background/rocks" instance=ExtResource( 7 )]
+position = Vector2( 373.393, -627.844 )
+
+[node name="rockVFX4" parent="Background/rocks" instance=ExtResource( 7 )]
+position = Vector2( 217.323, -481.867 )
+scale = Vector2( -1, 1 )
+
+[node name="rockVFX5" parent="Background/rocks" instance=ExtResource( 7 )]
+position = Vector2( 177.323, -649.867 )
+scale = Vector2( -1, 1 )
 
 [node name="trees" type="Node" parent="Background"]
 
@@ -143,53 +139,96 @@ z_index = -1
 position = Vector2( 62.7548, 216.795 )
 
 [node name="Background3" type="Sprite" parent="Background"]
-modulate = Color( 0.0745098, 0.0745098, 0.0745098, 0.835294 )
+modulate = Color( 0, 0, 0, 0.360784 )
 position = Vector2( -40.049, 256.057 )
 texture = ExtResource( 5 )
 region_rect = Rect2( 253.908, 100.897, 381.605, 320.654 )
-
-[node name="anim" type="AnimationPlayer" parent="Background/Background3"]
-autoplay = "idle"
-anims/idle = SubResource( 2 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 296.799, 516.626 )
 
 [node name="spawn" type="Node" parent="."]
 
-[node name="0-30 min" type="Node" parent="spawn"]
+[node name="30 seg" type="Node" parent="spawn"]
 
-[node name="EnemySpawn_azul" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+[node name="EnemySpawn_azul" parent="spawn/30 seg" instance=ExtResource( 3 )]
 position = Vector2( 75, -8.851 )
-triggerSpawn = [ 3.5, 10.0, 20.0, 30.0, 44.0 ]
-spawnType = [ 4, 2, 3, 1, 2 ]
+triggerSpawn = [ 20.0, 4000.0, 140.0, 180.0, 200.0 ]
+spawnType = [ 3, 2, 3, 1, 2 ]
 
-[node name="EnemySpawn_azul2" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+[node name="EnemySpawn_azul2" parent="spawn/30 seg" instance=ExtResource( 3 )]
 position = Vector2( 165, -14.171 )
-triggerSpawn = [ 10.0, 10.0, 33.0, 24.0, 55.0 ]
-spawnType = [ 4, 4, 3, 3, 1 ]
+triggerSpawn = [ 5.0, 4000.0, 33.0, 66.0, 111.0 ]
+spawnType = [ 3, 4, 3, 3, 1 ]
 
-[node name="EnemySpawn_azul3" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+[node name="EnemySpawn_azul3" parent="spawn/30 seg" instance=ExtResource( 3 )]
 position = Vector2( 260, -13.416 )
-triggerSpawn = [ 10.0, 22.0, 66.0, 125.0, 1254.0 ]
-spawnType = [ 4, 2, 3, 3, 1 ]
+triggerSpawn = [ 20.0, 4000.0, 10.0, 80.0, 100.0 ]
+spawnType = [ 3, 3, 3, 3, 1 ]
 
-[node name="EnemySpawn_azul4" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+[node name="EnemySpawn_azul4" parent="spawn/30 seg" instance=ExtResource( 3 )]
 position = Vector2( 365, -12.174 )
-triggerSpawn = [ 10.0, 333.0, 2222.0, 223232.0, 33.0 ]
+triggerSpawn = [ 15.0, 4000.0, 120.0, 150.0, 170.0 ]
 spawnType = [ 3, 4, 1, 3, 1 ]
 
-[node name="EnemySpawn_azul5" parent="spawn/0-30 min" instance=ExtResource( 3 )]
+[node name="EnemySpawn_azul5" parent="spawn/30 seg" instance=ExtResource( 3 )]
 position = Vector2( 470, -11.128 )
-triggerSpawn = [ 10.0, 10.0, 333.0, 233.0, 323.0 ]
-spawnType = [ 2, 3, 3, 3, 1 ]
-
-[node name="1 min" type="Node" parent="spawn"]
-
-[node name="EnemySpawn_azul6" parent="spawn/1 min" instance=ExtResource( 3 )]
-position = Vector2( 473.827, -81.294 )
-triggerSpawn = [ 30.0, 35.5, 42.5, 43.0, 50.0 ]
+triggerSpawn = [ 30.0, 4000.0, 150.0, 200.0, 220.0 ]
 spawnType = [ 3, 3, 3, 3, 1 ]
+
+[node name="60 seg" type="Node" parent="spawn"]
+
+[node name="EnemySpawn_azul" parent="spawn/60 seg" instance=ExtResource( 3 )]
+position = Vector2( 75, -8.851 )
+triggerSpawn = [ 40.0, 50.0, 4000.0, 180.0, 200.0 ]
+spawnType = [ 3, 3, 3, 1, 2 ]
+
+[node name="EnemySpawn_azul2" parent="spawn/60 seg" instance=ExtResource( 3 )]
+position = Vector2( 165, -14.171 )
+triggerSpawn = [ 42.0, 4000.0, 33.0, 66.0, 111.0 ]
+spawnType = [ 3, 3, 3, 3, 1 ]
+
+[node name="EnemySpawn_azul3" parent="spawn/60 seg" instance=ExtResource( 3 )]
+position = Vector2( 260, -13.416 )
+triggerSpawn = [ 44.0, 60.0, 4000.0, 80.0, 100.0 ]
+spawnType = [ 3, 5, 5, 3, 1 ]
+
+[node name="EnemySpawn_azul4" parent="spawn/60 seg" instance=ExtResource( 3 )]
+position = Vector2( 365, -12.174 )
+triggerSpawn = [ 46.0, 4000.0, 120.0, 150.0, 170.0 ]
+spawnType = [ 3, 4, 1, 3, 1 ]
+
+[node name="EnemySpawn_azul5" parent="spawn/60 seg" instance=ExtResource( 3 )]
+position = Vector2( 470, -11.128 )
+triggerSpawn = [ 48.0, 4000.0, 150.0, 200.0, 220.0 ]
+spawnType = [ 3, 3, 3, 3, 1 ]
+
+[node name="100" type="Node" parent="spawn"]
+
+[node name="EnemySpawn_azul" parent="spawn/100" instance=ExtResource( 3 )]
+position = Vector2( 75, -8.851 )
+triggerSpawn = [ 65.0, 75.0, 4000.0, 180.0, 200.0 ]
+spawnType = [ 3, 3, 3, 1, 2 ]
+
+[node name="EnemySpawn_azul2" parent="spawn/100" instance=ExtResource( 3 )]
+position = Vector2( 165, -14.171 )
+triggerSpawn = [ 66.0, 79.0, 90.0, 4000.0, 111.0 ]
+spawnType = [ 3, 3, 4, 3, 1 ]
+
+[node name="EnemySpawn_azul3" parent="spawn/100" instance=ExtResource( 3 )]
+position = Vector2( 260, -13.416 )
+triggerSpawn = [ 70.0, 84.0, 4000.0, 80.0, 100.0 ]
+spawnType = [ 4, 5, 5, 3, 1 ]
+
+[node name="EnemySpawn_azul4" parent="spawn/100" instance=ExtResource( 3 )]
+position = Vector2( 365, -12.174 )
+triggerSpawn = [ 66.0, 81.0, 4000.0, 150.0, 170.0 ]
+spawnType = [ 3, 3, 1, 3, 1 ]
+
+[node name="EnemySpawn_azul5" parent="spawn/100" instance=ExtResource( 3 )]
+position = Vector2( 470, -11.128 )
+triggerSpawn = [ 65.0, 77.0, 100.0, 4000.0, 220.0 ]
+spawnType = [ 3, 3, 5, 3, 1 ]
 
 [node name="spawnPos" type="Position2D" parent="."]
 position = Vector2( 283.588, 9.91168 )
@@ -198,3 +237,8 @@ position = Vector2( 283.588, 9.91168 )
 
 [node name="timeGame" parent="." instance=ExtResource( 4 )]
 wait_time = 0.25
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
+bus = "BGM"

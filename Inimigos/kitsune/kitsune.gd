@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var bullet_scene = load("res://Bullet_Inimigo/bullet_inimigo_teleguiado.tscn")
+onready var bullet_scene = preload("res://Bullet_Inimigo/bullet_inimigo_teleguiado.tscn")
 onready var player = get_tree().get_root().get_node("estage_1/player")
 #depois de um estudo, a conclusão é que a chamada acima pega o node com o nome designado
 #no caso player
@@ -14,26 +14,24 @@ var playerpos = Vector2(0,0)
 var canShoot = true
 
 #vector circular
-var x
-var y
 var ratio = 0.0
-var dividendo = 10.0
+var dividendo = 33.0
+# potencias de 2, padrão mais facil
+#12,36,72 >>> padrão mais dificil
 var angulo = 0.0
 
 onready var mainScene = get_tree().get_root().get_node("estage_1")
 
 func _ready():
-	ratio = 90.0/(dividendo-1.0)
-	x = cos(0.0)
-	y = sin(0.0)
+	ratio = 360 / dividendo
 func _process(delta):
+	
 	if canShoot:
 		spawn_bullets()
-		canShoot = false
-		$timer.start()
 		
 	mypos = self.global_position
 	playerpos = player.global_position
+	
 	move_local_x(1 * delta)
 	position.y += 50 * delta
 	
@@ -42,26 +40,24 @@ func _process(delta):
 		queue_free()
 
 func spawn_bullets():
-	for _i in range((dividendo+6.0)*2):
-		x = cos(angulo)
-		y = sin(angulo)
+	for _i in range(dividendo):
 		var b1 = bullet_scene.instance()
-		get_parent().add_child(b1)
 		b1.bullet_speed = 75
 		b1.position = get_global_position()
-		b1.dir = Vector2(x,y)
-		angulo += ratio
+		b1.dir = Vector2(cos( deg2rad(angulo)),sin(deg2rad(angulo)))
+		angulo = angulo + ratio
 		b1.glow = true
+		get_parent().add_child(b1)
+	canShoot = false
+	$timer.start()
 
 	
 func _on_timer_timeout():
-	x = 1
-	y = 0
 	angulo = 0
 	canShoot = true
-	if dividendo <= 19:
-		dividendo = dividendo + 2
-	else: dividendo = 10
+	#if dividendo <= 19:
+	#	dividendo = dividendo + 2
+	#else: dividendo = 10
 	
 func damage(amount: int):
 	life -= amount

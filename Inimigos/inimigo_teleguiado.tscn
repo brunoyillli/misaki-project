@@ -14,12 +14,13 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = ExtResource( 1 )
 animation = "movimentacao_fada_azul"
-frame = 4
+frame = 5
 playing = true
 
 [node name="Move_Tween" type="Tween" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.8
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2

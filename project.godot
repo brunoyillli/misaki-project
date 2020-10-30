@@ -78,6 +78,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_4="parede"
 2d_physics/layer_5="bullets"
 2d_physics/layer_6="enemy_bullets"
+2d_physics/layer_7="winLimit"
 
 [rendering]
 

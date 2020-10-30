@@ -9,10 +9,11 @@ onready var player = get_tree().get_root().get_node("estage_1/player")
 
 var alma_azul = preload("res://Cristais/Alma_azul/alma_azul.tscn")
 var alma_rosa = preload("res://Cristais/Alma_rosa/alma_rosa.tscn")
+var alma_verde = preload("res://Cristais/Alma_verde/alma_verde.tscn")
 onready var mainScene = get_tree().get_root().get_node("estage_1")
 
 
-var life = 45
+var life = 35
 var mypos = Vector2(0,0)
 var playerpos = Vector2(0,0)
 func _ready():
@@ -29,7 +30,7 @@ func _process(delta):
 	mypos = self.global_position
 	playerpos = player.global_position
 	move_local_x(1 * delta)
-	position.y += 50 * delta
+	position.y += 32 * delta
 	
 	if (position.y > get_viewport_rect().size.y + 20):
 		get_parent().remove_child(self)
@@ -44,13 +45,16 @@ func _process(delta):
 		var pick_azul = alma_azul.instance()
 		pick_azul.position = self.position
 		mainScene.call_deferred("add_child", pick_azul)
+		var pick_verde = alma_verde.instance()
+		pick_verde.position = self.position
+		mainScene.call_deferred("add_child", pick_verde)
 		queue_free()
 		
 func spawn_bullets():
 	var b1 = bullet_scene.instance()
 	
 	get_parent().add_child(b1)
-	b1.bullet_speed = 600
+	b1.bullet_speed = 300
 	b1.position = self.position
 	b1.dir = Vector2(playerpos.x- mypos.x, playerpos.y-mypos.y).normalized()
 

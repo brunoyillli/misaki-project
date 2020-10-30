@@ -1,13 +1,10 @@
 extends Node2D
 
-onready var enemy_scene = preload("res://Inimigos/inimigo_teleguiado.tscn")
-
-onready var teleguiado_Grande_scene = preload("res://Inimigos/Inimigo_teleguiado_Grande/Inimigo_tele_Grande.tscn")
-
 onready var linear_scene =preload("res://Inimigos/Inimigo_linear/Inimigo_linear.tscn")
-
+onready var teleguiado_Grande_scene = preload("res://Inimigos/Inimigo_teleguiado_Grande/Inimigo_tele_Grande.tscn")
+onready var enemy_scene = preload("res://Inimigos/inimigo_teleguiado.tscn")
 onready var kitsune = preload("res://Inimigos/kitsune/kitsune.tscn")
-
+onready var giant_fairy = preload("res://Inimigos/Giant-Fairy/Giant-Fairy.tscn")
 
 var wave = 1
 var spawnTimer = 0
@@ -48,26 +45,30 @@ func canSpawn():
 
 
 func spawn():
-	match wave:
-		1:
-			var enemy = linear_scene.instance()
-			enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
-			mainScene.add_child(enemy)
-		2:
-			var enemy = teleguiado_Grande_scene.instance()
-			enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
-			mainScene.add_child(enemy)
-
-		3:
-			var enemy = enemy_scene.instance()
-			enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
-			mainScene.add_child(enemy)
-		4:
-			var enemy = kitsune.instance()
-			enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
-			mainScene.add_child(enemy)
-			
-			
+	if triggerSpawn[index]<3600:
+		match wave:
+			1:
+				var enemy = linear_scene.instance()
+				enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
+				mainScene.add_child(enemy)
+			2:
+				var enemy = teleguiado_Grande_scene.instance()
+				enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
+				mainScene.add_child(enemy)
+			3:
+				var enemy = enemy_scene.instance()
+				enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
+				mainScene.add_child(enemy)
+			4:
+				var enemy = kitsune.instance()
+				enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
+				mainScene.add_child(enemy)
+			5:
+				var enemy = giant_fairy.instance()
+				enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
+				mainScene.add_child(enemy)
+	else:	
+		queue_free()
 		
 		
 		
