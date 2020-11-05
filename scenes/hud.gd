@@ -4,7 +4,7 @@ onready var player = get_node("../../player")
 
 const Hearth_row_size = 5
 const Hearth_offset = 8
-const Power_row_size = 5
+const Power_row_size = 8
 const Power_offset = 8
 func _ready():
 	
@@ -21,8 +21,8 @@ func _ready():
 	
 	for power in $power.get_children():
 		var index = power.get_index()
-		var x = (index % Hearth_row_size) * Hearth_offset
-		var y = (index / Hearth_row_size) * Hearth_offset
+		var x = (index % Power_row_size) * Hearth_offset
+		var y = (index /Power_row_size) * Hearth_offset
 		power.position = Vector2(x, y)
 		
 	for heart in $hearts.get_children():
@@ -33,13 +33,22 @@ func _ready():
 		heart.position = Vector2(x, y)
 		
 func _process(_delta):
+	
+	match player.power:
+		1:
+			$Level.text = "Lv  .1"
+		2:
+			$Level.text = "Lv  .2"
+		3:
+			$Level.text = "Lv  .3"
+			
 	for power in $power.get_children():
 		var index = power.get_index()
-		var last_power = floor(player.power)
+		var last_power = fixEight()
 		if index > last_power:
 			power.frame = 0
 		if index == last_power:
-			power.frame = (player.power - last_power) * 4
+			power.frame = (fixEight() - last_power) * 4
 		if index < last_power:
 			power.frame = 4
 	for heart in $hearts.get_children():
@@ -51,3 +60,8 @@ func _process(_delta):
 			heart.frame = (player.health - last_heart) * 4
 		if index < last_heart:
 			heart.frame = 4
+			
+func fixEight():
+	if floor(player.power_frag) > 8 and player.power <3:
+		return floor(player.power_frag)-8
+	else: return floor(player.power_frag)

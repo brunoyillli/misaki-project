@@ -8,9 +8,9 @@ var speed = 150
 
 var vel := Vector2(0, 0)
 
-var max_power = 3
+var max_power = 8
 var power = 1
-var power_frag = 1.0
+var power_frag = 0
 var max_health = 5
 var health = 3
 
@@ -59,11 +59,11 @@ func _physics_process(delta):
 	#move_and_slide(joystick.get_value() * speed)
 #	pass
 func powerFix():
-	if power_frag >= 1 and power_frag < 2:
+	if power_frag >= 0 and power_frag < 8:
 		power = 1
-	elif power_frag >= 2 and power_frag < 3:
+	elif power_frag >= 8 and power_frag < 16:
 		power = 2
-	elif power_frag >= 3:
+	elif power_frag >= 16:
 		power = 3
 func running():
 	var dirVec := Vector2(0, 0)

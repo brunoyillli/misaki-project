@@ -90,20 +90,30 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 5
 
-[node name="Life2" type="RichTextLabel" parent="hud"]
+[node name="Power" type="RichTextLabel" parent="hud"]
 margin_left = 558.625
-margin_top = 184.129
+margin_top = 227.129
 margin_right = 738.625
-margin_bottom = 218.129
+margin_bottom = 261.129
 text = "Power
 "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Level" type="RichTextLabel" parent="hud"]
+margin_left = 698.0
+margin_top = 208.0
+margin_right = 740.0
+margin_bottom = 228.0
+text = "Lv  .1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="power" type="Sprite" parent="hud"]
 modulate = Color( 0.054902, 1, 0, 1 )
-position = Vector2( 664, 192 )
+position = Vector2( 624, 235 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 hframes = 5
@@ -149,7 +159,7 @@ collision_layer = 64
 collision_mask = 32
 
 [node name="shape" type="CollisionShape2D" parent="deleta"]
-position = Vector2( 665.258, 298.37 )
+position = Vector2( 655.519, 275.146 )
 shape = SubResource( 3 )
 
 [node name="shape2" type="CollisionShape2D" parent="deleta"]

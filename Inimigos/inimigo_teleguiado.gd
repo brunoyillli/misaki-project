@@ -12,25 +12,39 @@ var alma_rosa = preload("res://Cristais/Alma_rosa/alma_rosa.tscn")
 var alma_verde = preload("res://Cristais/Alma_verde/alma_verde.tscn")
 onready var mainScene = get_tree().get_root().get_node("estage_1")
 
+var time = 0
+
+var speed = 64
+var state =""
+var side = 0
 
 var life = 35
 var mypos = Vector2(0,0)
 var playerpos = Vector2(0,0)
 func _ready():
+	side = randi() % 2 + 1
 	$Timer.start()
-	
 	var target = Vector2(position.x, 100)
 	$Move_Tween.interpolate_property(self, "position", position, target, 2, 
 	Tween.TRANS_QUINT, Tween.EASE_OUT)
 	$Move_Tween.start()
-
+	state = "goDOWN"
 
 
 func _process(delta):
+	time = get_tree().get_root().get_node("estage_1/timeGame").time
+	
 	mypos = self.global_position
 	playerpos = player.global_position
 	move_local_x(1 * delta)
-	position.y += 32 * delta
+	
+	#estados de direção
+	if time <=30:
+		state = "goDOWN"
+	else:
+		speed = 128
+		position2state()
+	updateState(delta)
 	
 	if (position.y > get_viewport_rect().size.y + 20):
 		get_parent().remove_child(self)
@@ -50,6 +64,60 @@ func _process(delta):
 		mainScene.call_deferred("add_child", pick_verde)
 		queue_free()
 		
+func position2state():
+	if position.y >= 550:
+		
+		if side == 1:
+			if	position.x >= 60:
+				state = selectSIDE()
+			else: state = "goUP"
+			
+		elif side == 2:
+			if	position.x <= 480:
+				state = selectSIDE()
+			else: state = "goUP"
+
+	elif position.y <= 50:
+		
+		if side==1:
+			if position.x <= 480 and state == "goUP":
+				state = inverseSIDE()
+			else: 
+				if position.x >= 480:
+					state = "goDOWN"
+					
+		elif side==2:
+			if position.x >= 60 and state == "goUP":
+				state = inverseSIDE()
+			else: 
+				if position.x <= 60:
+					state = "goDOWN"
+					
+func inverseSIDE():
+	match side:
+		1:
+			return "goRIGHT"
+		2:
+			return "goLEFT"
+
+func selectSIDE():
+	match side:
+		1:
+			return "goLEFT"
+		2:
+			return "goRIGHT"
+
+func updateState(delta):
+	match state:
+		"goDOWN":
+			position.y += speed * delta 
+		"goUP":
+			position.y -= speed * delta
+		"goLEFT":
+			position.x -= speed * delta * 0.6
+		"goRIGHT":
+			position.x += speed * delta * 0.6
+
 func spawn_bullets():
 	var b1 = bullet_scene.instance()
 	

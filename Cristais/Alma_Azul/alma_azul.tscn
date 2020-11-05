@@ -51,24 +51,24 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=10]
 radius = 38.5
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 108.304
 
 [node name="Alma_Azul" type="Area2D"]
-collision_layer = 4
+collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 9 )
-frame = 3
+frame = 7
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.484387, 0.387325 )
-shape = SubResource( 12 )
+shape = SubResource( 10 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 scale = Vector2( 0.431727, 0.451207 )
