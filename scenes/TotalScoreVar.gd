@@ -7,8 +7,6 @@ extends RichTextLabel
 
 
 # Called when the node enters the scene tree for the first time.
-func _process(_delta):
-	text = String(Global.points)
-	if Global.points > Global.highscore:
-		Global.highscore = Global.points
-		
+func _ready():
+	text = String(Global.highscore)
+	
