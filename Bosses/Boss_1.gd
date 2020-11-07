@@ -22,12 +22,12 @@ func _ready():
 	$RpTimer.start()
 
 
-func _physics_process(delta):
+func _process(delta):
 	move_local_x(1 * delta)
-	if (position.x >= get_viewport_rect().size.x - 30):
+	if position.x >= 480:
 		var_mov = -50
 		position.x += var_mov * delta
-	elif (position.x <= 30):
+	elif position.x <= 50:
 		var_mov = 50
 		position.x += var_mov * delta
 	else:
@@ -56,3 +56,7 @@ func damage(amount: int):
 func _on_RpTimer_timeout():
 	$Timer.start()
 	$RpTimer.stop()
+
+
+func _on_Boss_1_area_entered(_area):
+	damage(1)

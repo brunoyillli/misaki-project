@@ -10,13 +10,17 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	self.position += Vector2(1, 0).rotated(self.rotation)
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
+
+func _on_Bullet_Boss_1_body_entered(body):
+	body.damage(1)
+	queue_free()
+
+
 func _on_Bullet_Boss_1_area_entered(area):
-	if area.is_in_group("Player"):
-		area.damage(1) # Replace with function body.
-		queue_free()
+	queue_free()

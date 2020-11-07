@@ -4,7 +4,9 @@ onready var linear_scene =preload("res://Inimigos/Inimigo_linear/Inimigo_linear.
 onready var teleguiado_Grande_scene = preload("res://Inimigos/Inimigo_teleguiado_Grande/Inimigo_tele_Grande.tscn")
 onready var enemy_scene = preload("res://Inimigos/inimigo_teleguiado.tscn")
 onready var kitsune = preload("res://Inimigos/kitsune/kitsune.tscn")
-onready var giant_fairy = preload("res://Inimigos/Giant-Fairy/Giant-Fairy.tscn")
+onready var giant_fairy = preload("res://Inimigos/Giant-Fairy/giant-fairy.tscn")
+onready var boss01 = preload("res://Bosses/Boss_1.tscn")
+
 
 var wave = 1
 var spawnTimer = 0
@@ -22,7 +24,7 @@ var mainScene = ""
 func _ready():
 	spawnPosY = get_tree().get_root().get_node("estage_1/spawnPos").get_global_position().y
 	spawnPosX = get_global_position().x
-	mainScene = get_tree().get_root().get_node("estage_1")
+	mainScene = get_tree().get_root().get_node("estage_1/spawn")
 ##	for i in range(3):
 ##		var enemy = enemy_scene[0].instance()
 ##		randomize()
@@ -31,6 +33,8 @@ func _ready():
 ##		add_child(enemy)
 	
 func _process(_delta):
+	if triggerSpawn[index] > 3600:
+		queue_free()
 	#atualiza o tempo do script
 	time = get_tree().get_root().get_node("estage_1/timeGame").time
 	canSpawn()
@@ -67,9 +71,7 @@ func spawn():
 				var enemy = giant_fairy.instance()
 				enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
 				mainScene.add_child(enemy)
-	else:	
-		queue_free()
-		
-		
-		
-		
+			6:
+				var enemy = boss01.instance()
+				enemy.set_global_position(Vector2(spawnPosX,spawnPosY))
+				mainScene.add_child(enemy)

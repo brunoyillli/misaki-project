@@ -5,7 +5,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "glow"
-length = 0.4
+length = 0.3
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("bullet_blue:region_rect")
@@ -14,22 +14,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.15913 ),
+"times": PoolRealArray( 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Rect2( 274.432, 1509.79, 21.238, 32.4988 ), Rect2( 274.432, 1509.79, 21.238, 32.4988 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("bullet_blue:modulate")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ Color( 0.580392, 0.862745, 1, 1 ), Color( 0.996078, 0.768627, 0.960784, 1 ), Color( 0.780392, 0.870588, 0.890196, 1 ) ]
+"update": 0,
+"values": [ Color( 0.980392, 1, 0.333333, 0.447059 ), Color( 1, 0.964706, 0.6, 1 ), Color( 1, 0.992157, 0.784314, 1 ) ]
 }
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -50,7 +50,7 @@ autoplay = "glow"
 anims/glow = SubResource( 1 )
 
 [node name="bullet_blue" type="Sprite" parent="."]
-modulate = Color( 0.780392, 0.870588, 0.890196, 1 )
+modulate = Color( 1, 0.964706, 0.6, 1 )
 rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
