@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/winLimit.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Stages/background_stage_1/treeVFX.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Stages/background_stage_1/rockVFX.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sound/BGM/stage1.ogg" type="AudioStream" id=8]
+[ext_resource path="res://interfaces/Pause.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -242,3 +243,47 @@ wait_time = 0.25
 stream = ExtResource( 8 )
 autoplay = true
 bus = "BGM"
+
+[node name="Pause" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="Pause" type="Control" parent="Pause"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Pause/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.427451 )
+
+[node name="Continue" type="Button" parent="Pause/Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -6.0
+margin_top = -10.0
+margin_right = 6.0
+margin_bottom = 10.0
+text = "Continue"
+flat = true
+
+[node name="Quit" type="Button" parent="Pause/Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 8.81836
+margin_top = 35.2845
+margin_right = 48.8184
+margin_bottom = 55.2845
+text = "Quit"
+flat = true
+[connection signal="pressed" from="Pause/Pause/Continue" to="Pause/Pause" method="_on_Continue_pressed"]
+[connection signal="pressed" from="Pause/Pause/Quit" to="Pause/Pause" method="_on_Quit_pressed"]
