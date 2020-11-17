@@ -4,7 +4,7 @@ onready var linear_scene =preload("res://Inimigos/Inimigo_linear/Inimigo_linear.
 onready var teleguiado_Grande_scene = preload("res://Inimigos/Inimigo_teleguiado_Grande/Inimigo_tele_Grande.tscn")
 onready var enemy_scene = preload("res://Inimigos/inimigo_teleguiado.tscn")
 onready var kitsune = preload("res://Inimigos/kitsune/kitsune.tscn")
-onready var giant_fairy = preload("res://Inimigos/Giant-Fairy/giant-fairy.tscn")
+onready var giant_fairy = preload("res://Inimigos/Giant-Fairy/Giant-Fairy.tscn")
 onready var boss01 = preload("res://Bosses/Boss_1.tscn")
 
 
