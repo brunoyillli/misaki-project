@@ -3,6 +3,7 @@ extends Node
 var points = 0
 var highscore = 0 setget set_highscore
 const filepath = "user://highscore.data"
+var custom_variables = {}
 
 func instance_node(node, location, parent):
 	var node_instance = node.instance()
