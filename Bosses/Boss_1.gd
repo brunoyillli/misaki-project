@@ -1,6 +1,6 @@
 extends Area2D
 
-
+var rotacao_bullet = 0
 var bullet_scene = load("res://Bullet_Boss_1/Bullet_Boss_1.tscn")
 
 var type = "ENEMY"
@@ -28,19 +28,23 @@ func _process(delta):
 		var_mov = -50
 		position.x += var_mov * delta
 		$AnimatedSprite.play("direita")
+		get_node("reference").set_scale(Vector2(-1,1))
 	elif position.x <= 50:
 		var_mov = 50
 		position.x += var_mov * delta
 		$AnimatedSprite.play("esquerda")
+		get_node("reference").set_scale(Vector2(1,1))
 	else:
 		position.x += var_mov * delta
 		
 func spawn_bullets():
 	
-	rotate(5)
+	#rotate(5)
+	
 	var b = bullet_scene.instance()
-	b.position = self.position
-	b.rotation = self.rotation
+	b.position = get_node("reference/pivotBullet").global_position
+	rotacao_bullet += 5
+	b.rotation = rotacao_bullet
 	
 	get_parent().add_child(b)
 
