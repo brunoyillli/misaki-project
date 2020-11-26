@@ -6,17 +6,13 @@ var semaforo = true
 
 func _process(_delta):
 	
+	time = get_tree().get_root().get_node("estage_1/timeGame").time
+
+func dialog():
 	if dialog == null and get_tree().paused:
 		var new_pause_state = not get_tree().paused
 		get_tree().paused = new_pause_state
-		
-	time = get_tree().get_root().get_node("estage_1/timeGame").time
-	if time >= 10:
-		if semaforo == true:
-			pause()
-			dialogo()
-		semaforo = false
-func dialogo():
+	pause()
 	dialog.dialog_script = [
 		{
 			'background': "res://addons/dialogs/Images/background/placeholder-2.png"
@@ -73,7 +69,54 @@ func dialogo():
 		},
 	]
 	add_child(dialog)
-
+	
+func dialog2():
+	if dialog == null and get_tree().paused:
+		var new_pause_state = not get_tree().paused
+		get_tree().paused = new_pause_state
+	pause()
+	dialog = load("res://addons/dialogs/Dialog.tscn").instance()
+	dialog.dialog_script = [
+		{
+			'character': 'Nogitsune.',
+			'position': 'center',
+			'text':'Então? o que estávamos falando mesmo?'
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Misaki Anri.',
+			'position': 'center',
+			'text':'Bom, você vê todos esses espíritos e yokai por aí irritados? O que é isso?'
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Nogitsune.',
+			'position': 'center',
+			'text':'Os yokais neste estado estão sobre um feitiço e os espíritos foram invocados através de uma grande oração magica, por mais estranho que pareça, não estão relacionados com os yokais e espíritos daqui.'
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Misaki Anri',
+			'position': 'center',
+			'text':'Entendo, então foi um erro vir aqui.'
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Nogitsune.',
+			'position': 'center',
+			'text':'Vou te dar uma dica, a colina atrás do templo yokai é realmente suspeita.'
+		},
+	]
+	add_child(dialog)
+	
 func pause():
 	#var new_pause_state = not get_tree().get_root().get_node("estage_1/timeGame").paused
 	#get_tree().get_root().get_node("estage_1/timeGame").paused = new_pause_state

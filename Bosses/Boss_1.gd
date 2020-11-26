@@ -51,8 +51,8 @@ func damage(amount: int):
 	life -= amount
 	if life<= 0:
 		queue_free()
-
-
+		get_tree().get_root().get_node("estage_1/DialogoLayer/Dialogo").get_child(0).dialog2()
+		print(get_tree().get_root().get_node("estage_1/DialogoLayer/Dialogo"))
 func _on_RpTimer_timeout():
 	$Timer.start()
 	$RpTimer.stop()
