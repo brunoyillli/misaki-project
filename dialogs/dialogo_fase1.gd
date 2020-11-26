@@ -22,15 +22,55 @@ func dialogo():
 			'background': "res://addons/dialogs/Images/background/placeholder-2.png"
 		},
 		{
-			'character': 'Iteb',
+			'character': 'Misaki Anri.',
 			'position': 'center',
-			'text':'Hell nigga os shiet kpop modafuka'
+			'text':'Acho melhor eu derrotar quem está por trás dessa confusão!'
 		},
 		{
-			'character': 'Zas',
+			'action': 'clear_portraits'
+		},
+		{
+			'character': '???',
 			'position': 'center',
-			'text': 'Hey {Kubuk}, do you know what this is?'
-		}
+			'text':'Oh, nós temos visitantes!'
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Nogitsune.',
+			'position': 'center',
+			'text':'Oh, nós temos visitantes!'
+		},
+		{
+			'character': 'Nogitsune.',
+			'position': 'center',
+			'text':'Espere um segundo, vou pegar um chá'
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Misaki Anri',
+			'position': 'center',
+			'text':'Você poderia me dizer o que realmente deseja fazer deixando esses yokais e espíritos tão irritadas? '
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Nogitsune.',
+			'position': 'center',
+			'text':'Bom, não sei exatamente o que está acontecendo...'
+		},
+		{
+			'action': 'clear_portraits'
+		},
+		{
+			'character': 'Nogitsune',
+			'position': 'center',
+			'text':'Mas se quiser realmente saber, terá que ir me batendo!!'
+		},
 	]
 	add_child(dialog)
 
