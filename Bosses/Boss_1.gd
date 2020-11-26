@@ -27,9 +27,11 @@ func _process(delta):
 	if position.x >= 480:
 		var_mov = -50
 		position.x += var_mov * delta
+		$AnimatedSprite.play("direita")
 	elif position.x <= 50:
 		var_mov = 50
 		position.x += var_mov * delta
+		$AnimatedSprite.play("esquerda")
 	else:
 		position.x += var_mov * delta
 		
