@@ -164,6 +164,8 @@ func damage(qtd):
 			canHurt = false
 			$imune.start()
 			$animImun.play("imune")
+	else:
+		killed()
 	
 func killed():
 	if status != DEAD:

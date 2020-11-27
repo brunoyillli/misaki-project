@@ -9,6 +9,8 @@ func _process(_delta):
 	time = get_tree().get_root().get_node("estage_1/timeGame").time
 
 func dialog():
+	if dialog == null:
+		dialog = load("res://addons/dialogs/Dialog.tscn").instance()
 	if dialog == null and get_tree().paused:
 		var new_pause_state = not get_tree().paused
 		get_tree().paused = new_pause_state
