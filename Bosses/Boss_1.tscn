@@ -13,9 +13,9 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "esquerda",
+"name": "entrada",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ) ],
@@ -23,9 +23,9 @@ animations = [ {
 "name": "direita",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "entrada",
+"name": "esquerda",
 "speed": 5.0
 } ]
 
@@ -40,7 +40,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "esquerda"
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
